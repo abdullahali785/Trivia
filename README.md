@@ -21,3 +21,11 @@ The app fetches trivia questions from an API and lets users test their knowledge
 
 ---
 
+## ⚡ Installation & Setup
+   ```bash
+   git clone https://github.com/abdullahali785/Trivia.git
+   cd Trivia
+
+   npm install
+   node index.js
+   ```
