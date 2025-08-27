@@ -31,3 +31,9 @@ The app fetches trivia questions from an API and lets users test their knowledge
    ```
 App runs on http://localhost:3000
 
+
+## 🖥️ Usage
+- Open the app in your browser.
+- Pick a category and difficulty level.
+- Answer the quiz questions one by one.
+- See your final score at the end. 🎉
