@@ -37,3 +37,13 @@ App runs on http://localhost:3000
 - Pick a category and difficulty level.
 - Answer the quiz questions one by one.
 - See your final score at the end. 🎉
+
+## 🌃 Demo
+### 🏠 Landing Page
+![Landing Page](public/landing.png)
+
+### ❓ Question Page
+![Question Page](public/question.png)
+
+### 🏆 Results Page
+![Results Page](public/results.png)
