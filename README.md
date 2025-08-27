@@ -29,3 +29,5 @@ The app fetches trivia questions from an API and lets users test their knowledge
    npm install
    node index.js
    ```
+App runs on http://localhost:3000
+
