@@ -1,0 +1,18 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <div class="px-4 py-5 my-5 text-center"> 
+        <h2>Question <%= index %> of <%= total %></h2>
+        <div class="col-lg-6 mx-auto py-5"> 
+            <h4><%= question %></h4>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center py-4"> 
+                <form action="/answer" method="POST" class="d-flex flex-wrap justify-content-center gap-4">
+                <% answers.forEach(ans => { %>
+                    <button type="submit" name="answer" value="<%= ans %>" class="btn btn-outline-secondary btn-lg"><%= ans %></button>
+                <% }) %>
+                </form>
+            </div> 
+        </div> 
+    </div>
+
+<%- include("partials/footer.ejs") %>

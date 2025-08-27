@@ -1,0 +1,106 @@
+<%- include("partials/header.ejs") %>
+<body>
+    <div class="px-4 py-4 pt-5 my-5 text-center"> 
+        <h1 class="display-5 fw-bold text-body-emphasis py-4">Trivia</h1> 
+        <div class="col-lg-6 mx-auto"> 
+            <p class="lead mb-4">Play fun trivia quizzes across different categories and difficulties. Answer questions, track your score, and challenge yourself with new rounds every time!</p> 
+        </div> 
+    </div>
+
+    <% const entertainmentNumbers = [10, 11, 12, 13, 14, 15, 16, 29, 31, 32]; %>
+    <% const scienceNumbers = [17, 18, 19, 30]; %>
+    <% if (!locals.gameStarted) { %>
+
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center"> 
+        <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" id="categoryMenu" data-bs-theme="light"> 
+            <li><a class="dropdown-item rounded-2 disabled" style="color: rgb(0, 0, 0) !important;" href="#">Category</a></li> 
+            <li><hr class="dropdown-divider"></li> 
+            <li><a class="dropdown-item rounded-2" href="/" data-value="9">General</a></li> 
+            <li><a class="dropdown-item rounded-2" href="/" data-value="<%= entertainmentNumbers[Math.floor(Math.random() * entertainmentNumbers.length)] %>">Entertainment</a></li> 
+            <li><a class="dropdown-item rounded-2" href="/" data-value="<%= scienceNumbers[Math.floor(Math.random() * scienceNumbers.length)] %>">Science</a></li> 
+        </ul> 
+        <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 border-0 shadow w-220px" id="difficultyMenu" data-bs-theme="dark"> 
+            <li><a class="dropdown-item rounded-2 disabled" style="color: white !important;" href="/">Difficulty</a></li> 
+            <li><hr class="dropdown-divider"></li> 
+            <li><a class="dropdown-item rounded-2" href="/" data-value="easy">Easy</a></li> 
+            <li><a class="dropdown-item rounded-2" href="/" data-value="medium">Medium</a></li> 
+            <li><a class="dropdown-item rounded-2" href="/" data-value="hard">Hard</a></li> 
+        </ul>
+    </div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center py-5"> 
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" id="quizMeBtn" href="/quiz">Quiz Me!</button> 
+    </div> 
+
+    <% } else { %> 
+
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+        <div class="col-lg-6 mx-auto"> 
+            <p class="lead mb-4">Trivia Question</p> 
+        </div>  
+        <div class="dropdown-menu d-block position-static border-0 pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px" data-bs-theme="dark">  
+            <ul class="list-unstyled mb-0"> 
+                <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/"> 
+                    <span class="d-inline-block bg-success rounded-circle p-1"></span>Ans 1
+                </a>
+                </li> 
+                <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/"> 
+                        <span class="d-inline-block bg-primary rounded-circle p-1"></span>Ans 2
+                    </a>
+                </li> 
+                <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/"> 
+                        <span class="d-inline-block bg-danger rounded-circle p-1"></span>Ans 3
+                    </a>
+                </li> 
+                <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/"> 
+                        <span class="d-inline-block bg-info rounded-circle p-1"></span>Ans 4
+                    </a>
+                </li> 
+            </ul> 
+        </div> 
+    </div>
+
+    <% } %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        let selectedCategory = null;
+        let selectedDifficulty = null;
+
+        document.querySelectorAll('#categoryMenu .dropdown-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+            e.preventDefault();
+            selectedCategory = this.dataset.value;
+
+            document.querySelectorAll("#categoryMenu .dropdown-item")
+                .forEach(i => i.classList.remove("active"));
+            this.classList.add("active");
+            });
+        });
+
+        document.querySelectorAll('#difficultyMenu .dropdown-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+            e.preventDefault();
+            selectedDifficulty = this.dataset.value;
+
+            document.querySelectorAll("#difficultyMenu .dropdown-item")
+                .forEach(i => i.classList.remove("active"));
+            this.classList.add("active");
+            });
+        });
+
+        document.getElementById("quizMeBtn").addEventListener("click", function () {
+            if (!selectedCategory || !selectedDifficulty) {
+                alert("Please select both a category and difficulty!");
+                return;
+            }
+            window.location.href = `/quiz?category=${selectedCategory}&difficulty=${selectedDifficulty}`;
+        });
+
+    </script>
+</body>
+
+</html>

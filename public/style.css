@@ -1,0 +1,9 @@
+body{
+    background-color: rgb(255, 235, 209);
+    color: navy !important;
+}
+
+.dropdown-item.active {
+  background-color: navy !important;
+  color: white;
+}

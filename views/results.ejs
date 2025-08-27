@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") %>
+<body>
+    <div class="container text-center py-3" id="containers"> 
+        <hr class="my-4"> 
+        <h1 class="mt-4">Your Score: <%= score %> / <%= total %></h1> 
+    </div>
+    <div class="container themed-container text-center">
+        <ul class="list-group mt-4">
+            <% answers.forEach((a, i) => { %>
+            <li class="list-group-item">
+                <strong>Q<%= i+1 %>:</strong> <%= a.question %><br>
+                Your Answer: <%= a.chosen %> 
+                <% if (a.result) { %>
+                ✅ Correct
+                <% } else { %>
+                ❌ Wrong (Correct: <%= a.correct %>)
+                <% } %>
+            </li>
+            <% }) %>
+        </ul>
+        <a href="/" class="btn btn-primary mt-4">Play Again</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
